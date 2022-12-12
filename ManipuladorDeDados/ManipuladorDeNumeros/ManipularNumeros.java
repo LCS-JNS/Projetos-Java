@@ -1,16 +1,15 @@
-package ManipuladorDeDados.ManipuladorLetras;
+package ManipuladorDeDados.ManipuladorDeNumeros;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import ManipuladorDeDados.Display.Display;
 
-public class ManipularLetras {
-
+public class ManipularNumeros {
     private Scanner scan = new Scanner(System.in);
-    private String str;
+    private Integer[] nList;
     private int decision;
 
-    public ManipularLetras() {
+    public ManipularNumeros() {
         printMenu();
         setDecision();
         openManipulador();
@@ -18,24 +17,30 @@ public class ManipularLetras {
 
     private void setDecision() {
         try {
-            this.decision = Integer.parseInt(scan.nextLine());
+            this.decision = scan.nextInt();
         } catch(InputMismatchException e) {
             System.out.println("Entrada Inválida");
-            new ManipularLetras();
+            new ManipularNumeros();
         }
         if(decision != 0) {
-            System.out.print("Frase/Palavra: ");
-            this.str = scan.nextLine();
+            System.out.print("Quantidade de números a serem lidos: ");
+            int length = scan.nextInt();
+            Integer[] list = new Integer[length];
+            for(int i = 0; i < length; i++) {
+                System.out.print((i + 1) + "° número: ");
+                list[i] = scan.nextInt();
+            }
+            this.nList = list;
             System.out.print("Resultado: ");
         }
     }
 
     private void setDecisionAgain() {
         try {
-            this.decision = Integer.parseInt(scan.nextLine());
+            this.decision = scan.nextInt();
         } catch(InputMismatchException e) {
             System.out.println("Entrada Inválida");
-            new ManipularLetras();
+            new ManipularNumeros();
         }
         if(decision != 0) {
             System.out.print("Resultado: ");
@@ -45,27 +50,27 @@ public class ManipularLetras {
     private void openManipulador() {
         switch(decision) {
             case 1:
-                new Espelhado(str);
+                new OrganizaCrescente(nList);
                 postFstUse();
             break;
 
             case 2:
-                new TudoMaiusculo(str);
+                new OrganizaDecrescente(nList);
                 postFstUse();
             break;
 
             case 3:
-                new TudoMinusculo(str);
+                new MaiorNum(nList);
                 postFstUse();
             break;
 
             case 4:
-                new ContaCaractere(str);
+                new MenorNum(nList);
                 postFstUse();
             break;
 
             case 5:
-                new ApagaDuplicado(str);
+                new ApagaNumDup(nList);
                 postFstUse();
             break;
 
@@ -75,24 +80,24 @@ public class ManipularLetras {
 
             default:
                 System.out.println("Entrada Inválida");
-                new ManipularLetras();
+                new ManipularNumeros();
             break;
         }
     }
 
     private void printMenu() {
-        System.out.println("\n-----------Menu Letras-----------");
-        System.out.println("1- Escrever frase/palavra espelhado");
-        System.out.println("2- Deixar todas as letras maíusculas");
-        System.out.println("3- Deixar todas as letras minúsculas");
-        System.out.println("4- Informar quantos caracteres a frase/palavra possui");
-        System.out.println("5- Apagar caracteres duplicados");
+        System.out.println("\n-----------Menu Números-----------");
+        System.out.println("1- Organizar em ordem crescente");
+        System.out.println("2- Organizar em ordem decrescente");
+        System.out.println("3- Mostrar o maior número");
+        System.out.println("4- Mostrar o menor número");
+        System.out.println("5- Apagar numeros duplicados");
         System.out.println("0- Retornar ao Menu Principal");
         System.out.print("Escolha: ");
     }
 
     private void postFstUse() {
-        System.out.println("\nDeseja utilizar a mesma palavra/frase para outro propósito?\n1- Sim\n2-Não");
+        System.out.println("\nDeseja utilizar a mesma lista para outro propósito?\n1- Sim\n2-Não");
         System.out.print("Escolha: ");
         int escolha = scan.nextInt();
         if(escolha == 1) {
@@ -100,7 +105,7 @@ public class ManipularLetras {
             setDecisionAgain();
             openManipulador();
         } else if(escolha == 2) {
-            new ManipularLetras();
+            new ManipularNumeros();
         }
     }
 }

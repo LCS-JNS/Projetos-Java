@@ -8,15 +8,11 @@ public class TudoMaiusculo {
         System.out.println(getTudoMaiusculo());
     }
 
-    public String getTudoMaiusculo() {
+    private String getTudoMaiusculo() {
         return str.toUpperCase();
     }
 
-    public String getStr() {
-        return str;
-    }
-
-    public void setStr(String str) {
+    private void setStr(String str) {
         this.str = str;
     }
 }

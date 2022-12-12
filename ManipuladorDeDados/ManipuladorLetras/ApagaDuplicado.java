@@ -9,7 +9,7 @@ public class ApagaDuplicado {
         System.out.println(apgDup());
     }
 
-    public String apgDup() {
+    private String apgDup() {
         String[] strList = str.split("");
 
         for (int i = strList.length - 1; i >= 0; i--) {
@@ -31,11 +31,7 @@ public class ApagaDuplicado {
         return this.str;
     }
 
-    public String getStr() {
-        return str;
-    }
-
-    public void setStr(String str) {
+    private void setStr(String str) {
         this.str = str;
     }
     

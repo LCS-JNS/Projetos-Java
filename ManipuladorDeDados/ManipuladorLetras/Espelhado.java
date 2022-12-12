@@ -8,7 +8,7 @@ public class Espelhado {
         System.out.println(getEspelhado());
     }
 
-    public String getEspelhado() {
+    private String getEspelhado() {
         String[] strList = str.split("");
         this.str = "";
         for (int i = strList.length - 1; i >= 0; i--) {
@@ -17,11 +17,7 @@ public class Espelhado {
         return str;
     }
 
-    public String getStr() {
-        return str;
-    }
-
-    public void setStr(String str) {
+    private void setStr(String str) {
         this.str = str;
     }
 

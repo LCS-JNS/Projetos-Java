@@ -9,14 +9,11 @@ public class ContaCaractere {
         System.out.println(getQtdCaractere() + " carateres presentes");
     }
 
-    public int getQtdCaractere() {
+    private int getQtdCaractere() {
         return this.str.length();
     }
 
-    public String getStr() {
-        return str;
-    }
-    public void setStr(String str) {
+    private void setStr(String str) {
         this.str = str;
     }
 
