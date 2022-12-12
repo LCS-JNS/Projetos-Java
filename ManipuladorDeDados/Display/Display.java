@@ -18,7 +18,7 @@ public class Display {
 
     public void setDecision() {
         System.out.println("\n-----------Menu Principal-----------");
-        System.out.print("1- Manipular Letras \n2- Manipular Números\nEscolha: ");
+        System.out.print("1- Manipular Letras \n2- Manipular Números\n0- Fechar programa\nEscolha: ");
         try {
             this.decision = scan.nextInt();
         } catch(InputMismatchException e) {
@@ -36,6 +36,10 @@ public class Display {
 
             case 2:
                 new ManipularNumeros();
+            break;
+
+            case 0:
+                System.out.println("Obrigado por usar o meu programa!");
             break;
 
             default:
