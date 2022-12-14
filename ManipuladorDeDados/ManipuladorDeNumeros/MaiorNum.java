@@ -6,10 +6,9 @@ public class MaiorNum {
     
     public MaiorNum(Integer[] nList) {
         setnList(nList);
-        System.out.println(getMaior());
     }
 
-    private int getMaior() {
+    public int getMaior() {
         int maior = 0;
         for (int i = 0; i < nList.length; i++) {
             if(nList[i] > maior) {

@@ -5,10 +5,9 @@ public class TudoMinusculo {
 
     public TudoMinusculo(String str) {
         setStr(str);
-        System.out.println(getTudoMinusculo());
     }
 
-    private String getTudoMinusculo() {
+    public String getTudoMinusculo() {
         return str.toLowerCase();
     }
 

@@ -6,10 +6,9 @@ public class ContaCaractere {
 
     public ContaCaractere(String str) {
         setStr(str);
-        System.out.println(getQtdCaractere() + " carateres presentes");
     }
 
-    private int getQtdCaractere() {
+    public int getQtdCaractere() {
         return this.str.length();
     }
 

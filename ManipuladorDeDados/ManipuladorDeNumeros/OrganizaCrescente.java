@@ -9,10 +9,9 @@ public class OrganizaCrescente {
 
     public OrganizaCrescente(Integer[] nList) {
         setnList(nList);
-        System.out.println(orgCresc());
     }
 
-    private String orgCresc() {
+    public String orgCresc() {
         Arrays.sort(nList);
         for (int i = 0; i < nList.length; i++) {
             this.str += String.valueOf(nList[i]);

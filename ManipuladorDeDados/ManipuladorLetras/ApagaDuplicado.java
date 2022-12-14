@@ -6,10 +6,9 @@ public class ApagaDuplicado {
 
     public ApagaDuplicado(String str) {
         setStr(str);
-        System.out.println(apgDup());
     }
 
-    private String apgDup() {
+    public String apgDup() {
         String[] strList = str.split("");
 
         for (int i = strList.length - 1; i >= 0; i--) {

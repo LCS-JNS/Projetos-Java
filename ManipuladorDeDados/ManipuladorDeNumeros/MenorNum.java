@@ -5,10 +5,9 @@ public class MenorNum {
     
     public MenorNum(Integer[] nList) {
         setnList(nList);
-        System.out.println(getMenor());
     }
 
-    private int getMenor() {
+    public int getMenor() {
         int menor = 999999999;
         for (int i = 0; i < nList.length; i++) {
             if(nList[i] < menor) {

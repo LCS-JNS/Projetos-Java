@@ -8,10 +8,9 @@ public class OrganizaDecrescente {
 
     public OrganizaDecrescente(Integer[] nList) {
         setnList(nList);
-        System.out.println(orgDec());
     }
 
-    private String orgDec() {
+    public String orgDec() {
         Arrays.sort(nList, Collections.reverseOrder());
         for (int i = 0; i < nList.length; i++) {
             this.str += String.valueOf(nList[i]);

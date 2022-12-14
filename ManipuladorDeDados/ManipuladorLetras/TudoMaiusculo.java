@@ -5,10 +5,9 @@ public class TudoMaiusculo {
 
     public TudoMaiusculo(String str) {
         setStr(str);
-        System.out.println(getTudoMaiusculo());
     }
 
-    private String getTudoMaiusculo() {
+    public String getTudoMaiusculo() {
         return str.toUpperCase();
     }
 

@@ -8,10 +8,9 @@ public class ApagaNumDup {
     public ApagaNumDup(Integer[] nList) {
         setnList(nList);
         nListTOstrList();
-        System.out.println(apgNumDup());
     }
 
-    private String apgNumDup() {
+    public String apgNumDup() {
         for (int i = strList.length - 1; i >= 0; i--) {
             String atual = strList[i];
             for (int j = 0; j < strList.length; j++) {
