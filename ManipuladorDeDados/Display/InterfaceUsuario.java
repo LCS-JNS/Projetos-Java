@@ -54,12 +54,12 @@ public class InterfaceUsuario {
         frame = new JFrame();
         frame.setResizable(false);
         frame.setTitle("Manipulador de letras e números");
-        frame.setBounds(100, 100, 449, 329);
+        frame.setBounds(100, 100, 449, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(10, 42, 413, 237);
+        tabbedPane.setBounds(10, 15, 413, 237);
         frame.getContentPane().add(tabbedPane);
 
         JPanel panel = new JPanel();
