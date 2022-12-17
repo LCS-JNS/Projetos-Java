@@ -1,1 +1,0 @@
-Este manipulador irá receber números ou letras e então realizar ações que serão de escolha do usuário

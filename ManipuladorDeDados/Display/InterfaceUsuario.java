@@ -69,7 +69,8 @@ public class InterfaceUsuario {
         JComboBox cbLetras = new JComboBox();
         cbLetras.setModel(new DefaultComboBoxModel(new String[] { "Escrever frase/palavra espelhado",
                 "Deixar todas as letras maíusculas", "deixar todas as letras minúsculas",
-                "Informar quantos caracteres possui", "Apagar caracteres duplicados" }));
+                "Informar quantos caracteres possui",
+                "Apagar caracteres duplicados", "Ordenar alfabeticamente palavras/frases" }));
         cbLetras.setBounds(10, 27, 230, 22);
         panel.add(cbLetras);
 
@@ -98,6 +99,8 @@ public class InterfaceUsuario {
         btnLetras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String str = tfLetras.getText();
+                String[] strList = removeCommas(str);
+
                 switch (cbLetras.getSelectedIndex()) {
                     case 0:
                         Espelhado esp = new Espelhado(str);
@@ -122,6 +125,11 @@ public class InterfaceUsuario {
                     case 4:
                         ApagaDuplicado ad = new ApagaDuplicado(str);
                         tpLetras.setText(ad.apgDup());
+                        break;
+                    
+                    case 5:
+                        OrdemAlfabetica oa = new OrdemAlfabetica(strList);
+                        tpLetras.setText(oa.alfabeticalOrder());
                         break;
                 }
             }
@@ -168,16 +176,7 @@ public class InterfaceUsuario {
                 try {
                     String str = tfNumeros.getText();
 
-                    String[] strList = null;
-                    if (str.contains(",") || str.contains(";") && !str.contains(" "))
-                        if(str.contains(";")) strList = str.split(";");
-                        else strList = str.split(",");
-                    else if (str.contains(", ") || str.contains("; "))
-                        if(str.contains("; ")) strList = str.split("; ");
-                        else strList = str.split(", ");
-                    else if (!str.contains(",") && !str.contains(";") && str.contains(" "))
-                        strList = str.split(" ");
-                    else  strList = str.split("");
+                    String[] strList = removeCommas(str);
 
                     Integer[] nList = new Integer[strList.length];
                     for (int i = 0; i < strList.length; i++) {
@@ -222,5 +221,24 @@ public class InterfaceUsuario {
         btnNumeros.setBounds(278, 27, 89, 23);
         panel_1.add(btnNumeros);
 
+    }
+
+    public String[] removeCommas(String str) {
+        String[] strList = null;
+        if ((str.contains(",") || str.contains(";")) && !str.contains(" "))
+            if (str.contains(";"))
+                strList = str.split(";");
+            else
+                strList = str.split(",");
+        else if (str.contains(", ") || str.contains("; "))
+            if (str.contains("; "))
+                strList = str.split("; ");
+            else
+                strList = str.split(", ");
+        else if (!str.contains(",") && !str.contains(";") && str.contains(" "))
+            strList = str.split(" ");
+        else strList = str.split("");
+
+        return strList;
     }
 }
