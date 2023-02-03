@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="API/src/" kind="src" path=""/>
+	<classpathentry kind="src" path="gson-2.10.1.jar"/>
+	<classpathentry kind="output" path="javax.json-1.1.4.jar"/>
+</classpath>
