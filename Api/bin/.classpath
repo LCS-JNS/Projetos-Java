@@ -7,7 +7,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="json-1.1.4.jar"/>
+	<classpathentry kind="lib" path="javax.json-1.1.4.jar"/>
 	<classpathentry kind="lib" path="gson-2.10.1.jar"/>
 	<classpathentry kind="output" path="Api/bin"/>
 </classpath>
