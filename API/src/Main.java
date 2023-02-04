@@ -7,13 +7,17 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import javax.json.Json;
 import javax.json.JsonObject;
+
+import com.google.gson.Gson;
+
 import java.util.Scanner;
 
 public class Main {
-	public final String siteBase = "https://economia.awesomeapi.com.br/json/last/";
-	public String siteModify = "https://economia.awesomeapi.com.br/json/last/";
-	public String[] splitedInfo;
-	public String currencies;
+	private final String siteBase = "https://economia.awesomeapi.com.br/json/last/";
+	private String siteModify = "https://economia.awesomeapi.com.br/json/last/";
+	private String currencies;
+	private String currencieRemove;
+	private Quotation q;
 
 	public Main() throws IOException {
 		setCurrency();
@@ -24,8 +28,8 @@ public class Main {
 		int aprova = 0;
 		while (aprova == 0) {
 
-			// Inform both currencies you desire to use
-			System.out.print("Informe as duas moedas que deseja usar(Ex: USD-BRL): ");
+			// Jsonrm both currencies you desire to use
+			System.out.print("\nInforme as duas moedas que deseja usar(Ex: USD-BRL): ");
 
 			this.currencies = scan.next();
 
@@ -49,7 +53,6 @@ public class Main {
 	public void getQuotation() throws IOException {
 		URL url = new URL(this.siteModify);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		String[] splitedInfo = null;
 
 		try {
 
@@ -58,16 +61,17 @@ public class Main {
 			JsonObject jsonObject = Json.createReader(in).readObject();
 			in.close();
 
-			String info = jsonObject.toString();
+			String json = jsonObject.toString();
 
-			//Some trasnlations to brazilian portuguese
-			info = info.replace("name", "Nome");
-			info = info.replace("high", "Alta");
-			info = info.replace("low", "Baixa");
-			info = info.replace("bid", "Cotação atual");
-			
-			splitedInfo = info.split(",");
-			this.splitedInfo = splitedInfo;
+			//Removendo o começo do json provido pela API pois estava atrapalhando a desserialização
+			//Removing the beginning of json provided by the API because it was messing with the deserialization
+			currencieRemove = this.currencies.replace("-", "");
+			String str = "{\"" + currencieRemove + "\":";
+			json = json.replace(str, "");
+			json = json.replace("}}", "}");
+			Gson gson = new Gson();
+			this.q = gson.fromJson(json, Quotation.class);
+
 
 		} catch (FileNotFoundException e) {
 
@@ -81,15 +85,11 @@ public class Main {
 	}
 
 	public void print() throws IOException {
-		String[] splitedInfo = this.splitedInfo;
-
-		for (String s : splitedInfo) {
-			if (!s.equals(splitedInfo[splitedInfo.length - 1])) {
-				System.out.println(s + ",");
-			} else {
-				System.out.println(s);
-			}
-		}
+		Quotation q = this.q;
+		System.out.println("\nMoedas: " + q.getName());
+		System.out.println("Alta: " + q.getHigh());
+		System.out.println("Baixa: " + q.getLow());
+		System.out.println("Cotação atual: " + q.getBid());
 	}
 
 	public static void main(String[] args) throws Exception {
