@@ -39,7 +39,7 @@ public class Main {
 			} else {
 
 				// Invalid values
-				System.out.println("Valores inválidas.");
+				System.out.println("Valores inválidos.");
 
 			}
 		}
@@ -59,6 +59,13 @@ public class Main {
 			in.close();
 
 			String info = jsonObject.toString();
+
+			//Some trasnlations to brazilian portuguese
+			info = info.replace("name", "Nome");
+			info = info.replace("high", "Alta");
+			info = info.replace("low", "Baixa");
+			info = info.replace("bid", "Cotação atual");
+			
 			splitedInfo = info.split(",");
 			this.splitedInfo = splitedInfo;
 
