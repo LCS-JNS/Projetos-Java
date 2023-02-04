@@ -76,7 +76,7 @@ public class Main {
 		} catch (FileNotFoundException e) {
 
 			// Both or one of the currencies does not exist
-			System.out.println("Ambas ou uma das Moedas é inexistente.");
+			System.out.println("Ambas ou uma das moedas é inexistente.");
 
 			this.siteModify = this.siteBase;
 			setCurrency();
