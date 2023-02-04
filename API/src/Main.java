@@ -33,8 +33,8 @@ public class Main {
 
 			this.currencies = scan.next();
 
-			// Regex que irá verificar se o formato da entrada é (AAA-AAA)/ Regex that will
-			// verify if the input format is (AAA-AAA)
+			// Regex que irá verificar se o formato da entrada é (AAA-AAA)
+			// Regex that will verify if the input format is (AAA-AAA)
 			if (currencies.matches("^[A-Z]{3}-[A-Z]{3}$")) {
 				this.siteModify += currencies;
 				getQuotation();
@@ -63,8 +63,8 @@ public class Main {
 
 			String json = jsonObject.toString();
 
-			//Removendo o começo do json provido pela API pois estava atrapalhando a desserialização
-			//Removing the beginning of json provided by the API because it was messing with the deserialization
+			// Removendo o começo do json provido pela API pois estava atrapalhando a desserialização
+			// Removing the beginning of json provided by the API because it was messing with the deserialization
 			currencieRemove = this.currencies.replace("-", "");
 			String str = "{\"" + currencieRemove + "\":";
 			json = json.replace(str, "");
