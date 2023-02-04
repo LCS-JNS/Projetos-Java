@@ -19,6 +19,60 @@ public class Main {
 		setCurrency();
 	}
 
+	public void setCurrency() throws IOException {
+		Scanner scan = new Scanner(System.in);
+		int aprova = 0;
+		while (aprova == 0) {
+
+			// Inform both currencies you desire to use
+			System.out.print("Informe as duas moedas que deseja usar(Ex: USD-BRL): ");
+
+			this.currencies = scan.next();
+
+			// Regex que irá verificar se o formato da entrada é (AAA-AAA)/ Regex that will
+			// verify if the input format is (AAA-AAA)
+			if (currencies.matches("^[A-Z]{3}-[A-Z]{3}$")) {
+				this.siteModify += currencies;
+				getQuotation();
+				print();
+				System.exit(0);
+			} else {
+
+				// Invalid values
+				System.out.println("Valores inválidas.");
+
+			}
+		}
+		scan.close();
+	}
+
+	public void getQuotation() throws IOException {
+		URL url = new URL(this.siteModify);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		String[] splitedInfo = null;
+
+		try {
+
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader((connection.getInputStream()), StandardCharsets.UTF_8));
+			JsonObject jsonObject = Json.createReader(in).readObject();
+			in.close();
+
+			String info = jsonObject.toString();
+			splitedInfo = info.split(",");
+			this.splitedInfo = splitedInfo;
+
+		} catch (FileNotFoundException e) {
+
+			// Both or one of the currencies does not exist
+			System.out.println("Ambas ou uma das Moedas é inexistente.");
+
+			this.siteModify = this.siteBase;
+			setCurrency();
+		}
+		connection.disconnect();
+	}
+
 	public void print() throws IOException {
 		String[] splitedInfo = this.splitedInfo;
 
@@ -29,58 +83,6 @@ public class Main {
 				System.out.println(s);
 			}
 		}
-	}
-
-	public void getQuotation() throws IOException {
-		URL url = new URL(this.siteModify);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		String[] splitedInfo = null;
-		
-		try {
-
-			BufferedReader in = new BufferedReader(new InputStreamReader((connection.getInputStream()), StandardCharsets.UTF_8));
-			JsonObject jsonObject = Json.createReader(in).readObject();
-			in.close();
-
-			String info = jsonObject.toString();
-			splitedInfo = info.split(",");
-			this.splitedInfo = splitedInfo;
-			
-		} catch (FileNotFoundException e) {
-
-			//Both or one of the currencies does not exist
-			System.out.println("Ambas ou uma das Moedas é inexistente.");
-
-			this.siteModify = this.siteBase;
-			setCurrency();
-		}
-		connection.disconnect();
-	}
-
-	public void setCurrency() throws IOException {
-		Scanner scan = new Scanner(System.in);
-		int aprova = 0;
-		while(aprova == 0) {
-
-			//Inform both currencies you desire to use
-			System.out.print("Informe as duas moedas que deseja usar(Ex: USD-BRL): ");
-
-			this.currencies = scan.next();
-
-			//Regex que irá verificar se o formato da entrada é (AAA-AAA)/ Regex that will verify if the input format is (AAA-AAA)
-			if(currencies.matches("^[A-Z]{3}-[A-Z]{3}$")) {
-				this.siteModify += currencies;
-				getQuotation();
-				print();
-				System.exit(0);
-			} else {
-
-				//Invalid values
-				System.out.println("Valores inválidas.");
-
-			}
-		}
-		scan.close();
 	}
 
 	public static void main(String[] args) throws Exception {
